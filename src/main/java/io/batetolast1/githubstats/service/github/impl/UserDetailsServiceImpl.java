@@ -1,6 +1,7 @@
 package io.batetolast1.githubstats.service.github.impl;
 
 import io.batetolast1.githubstats.config.property.JdbcProperties;
+import io.batetolast1.githubstats.exception.ResourceNotFoundException;
 import io.batetolast1.githubstats.model.github.Repo;
 import io.batetolast1.githubstats.model.github.UserDetails;
 import io.batetolast1.githubstats.repository.github.RepoRepository;
@@ -9,14 +10,11 @@ import io.batetolast1.githubstats.service.github.ApiService;
 import io.batetolast1.githubstats.service.github.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -79,13 +77,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         fetchOrRefreshDataIfNeeded(username);
 
         return userDetailsRepository.findByUsername(username)
-                .orElseThrow(() -> new HttpServerErrorException(NOT_FOUND));
+                .orElseThrow(() -> new ResourceNotFoundException("User details not found."));
     }
 
     public UserDetails getUserDetailsWithAllRepos(String username) {
         fetchOrRefreshDataIfNeeded(username);
 
         return userDetailsRepository.findAllByUsername(username)
-                .orElseThrow(() -> new HttpServerErrorException(NOT_FOUND));
+                .orElseThrow(() -> new ResourceNotFoundException("User details not found."));
     }
 }
