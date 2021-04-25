@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,9 +29,11 @@ public class UserDetails {
     @GeneratedValue(strategy = IDENTITY)
     @JsonIgnore
     private Long id;
+    @NotBlank
     private String username;
     @JsonProperty("all_stargazers_count")
-    private int allStargazersCount;
+    @Min(0)
+    private Integer allStargazersCount;
     @JsonProperty("latest_fetch")
     private LocalDateTime latestFetch;
     @OneToMany

@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -26,8 +28,11 @@ public class Repo {
     @SequenceGenerator(name = "seqGen", sequenceName = "seq")
     @JsonIgnore
     private Long id;
+    @NotBlank
     private String username;
+    @NotBlank
     private String name;
+    @Min(0)
     @JsonProperty("stargazers_count")
     private Integer stargazersCount;
 }
