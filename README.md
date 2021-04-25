@@ -17,7 +17,12 @@ for any GitHub user.
 - Lombok
 - JUnit5, AssertJ, Mockito
 
-### Setup
+### Setup for UNIX systems
+0. Prerequisites:
+- cURL
+- UnZip
+- Docker
+
 1. Get your own GitHub Personal access token - no special permissions needed (https://github.com/settings/tokens)
 
 2. Run
