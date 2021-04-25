@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: true
+        format_sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: TRACE
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: TRACE
+            StatementCreatorUtils: TRACE
+
+server:
+  error:
+    include-stacktrace: always

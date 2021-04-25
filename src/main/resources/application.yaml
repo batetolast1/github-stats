@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:h2:mem:${H2_DB}?serverTimezone=UTC&cachePrepStmts=true&useServerPrepStmts=true&rewriteBatchedStatements=true
+    username: ${H2_USERNAME}
+    password: ${H2_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        order_inserts: true
+        jdbc:
+          batch_size: 200
+          update_threshold: 3600
+
+github:
+  rest:
+    personal-access-token: ${GITHUB_PERSONAL_ACCESS_TOKEN}
+    app-owner-username: ${GITHUB_APP_OWNER_USERNAME}
+    scheme: https
+    host: api.github.com
+    mediaType: application/vnd.github.v3+json
+    max-results-per-page: 100
